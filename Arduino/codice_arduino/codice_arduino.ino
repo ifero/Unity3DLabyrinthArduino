@@ -35,12 +35,12 @@ void loop()
   char y = readRegister(Y_OUT);
   char z = readRegister(Z_OUT);
   
-  //char xmap = map(x,60,-60,90,-90);
-  //char ymap = map(y,60,-60,90,-90);
+  char xmap = map(x,57,-52,90,-90);
+  char ymap = map(y,54,-57,90,-90);
   //char zmap = map(z,60,-60,90,-90);
-  Serial.print(x,DEC);
+  Serial.print(xmap,DEC);
   Serial.print(";");
-  Serial.print(y,DEC);
+  Serial.print(ymap,DEC);
   Serial.print(";");
   Serial.print(z,DEC);
   Serial.println(";");
