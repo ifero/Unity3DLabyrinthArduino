@@ -1,4 +1,6 @@
-﻿function OnTriggerEnter() {
+﻿var intero:int;
+function OnTriggerEnter() {
+	intero=1;
 	//oggettoPalla = GameObject.Find("Palla");
 	//componenteValoredado = oggettoDado.GetComponent("ValoreDado");
 	//componenteValoredado.valoreCorrente = valoreFaccia;
