@@ -4,35 +4,31 @@ using System.IO.Ports;
 
 
 public class CommunicationWithArduino : MonoBehaviour {
-	SerialPort sp = new SerialPort("COM9",115200); 
+	
+	// Create a serial port to listen
+	SerialPort sp = new SerialPort("COM9",115200);
+	
+	// Vector of strings in which will be saved the 3-axes
 	string[] accelerometer;
 	
-	// Use this for initialization
+	// Initialize the communication between arduino and unity
 	void Start () {
+		// Open the serial communication
 		sp.Open();
-		if(sp.IsOpen){
-			try{
-				string str = sp.ReadLine();
-				accelerometer = str.Split(';');
-				//Debug.Log(str);
-				//sp.BaseStream.Flush();
-			}
-			catch(System.Exception){
-				
-			}
-		}
-		sp.ReadTimeout = 1;
+		// Set the timeout at 100 milliseconds
+		sp.ReadTimeout = 100;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		// Check if the connection is open
 		if(sp.IsOpen){
 			try{
+				// Read a line from the serial stream (X;Y;Z)
 				string str = sp.ReadLine();
+				// Split the string readed by the semicolon
 				accelerometer = str.Split(';');
-				//if (int.Parse(accelerometer[0])>45)
-				//	accelerometer[0]="45";
-				
+				// Set the maximum inclination at 45 degrees
 				for(int i=0; i<3; i++)
 				{
 					if (int.Parse(accelerometer[i])>45)
@@ -40,7 +36,6 @@ public class CommunicationWithArduino : MonoBehaviour {
 					else if (int.Parse(accelerometer[i])<-45)
 						accelerometer[i]="-45";
 				}
-				//Debug.Log(str);
 				MoveThePlane(accelerometer);
 			}
 			catch(System.Exception){
@@ -49,12 +44,11 @@ public class CommunicationWithArduino : MonoBehaviour {
 		}
 	}
 	
+	// This method is callen each frame
 	void MoveThePlane (string[] accelerometer){
 		
+			// Create a quaternion with the accelerometer values
 			Quaternion target = Quaternion.Euler(-(float.Parse(accelerometer[0])),0,float.Parse(accelerometer[1]));
+			// rotate the object from his position to the new position in a certain amount of time
         	transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 2.0f);
-		//	transform.Rotate(-(int.Parse(accelerometer[0])-temp[0]),0,int.Parse(accelerometer[1])-temp[1],Space.Self);
-		//sp.BaseStream.Flush();
-		//Debug.Log(accelerometer[0]+" - "+accelerometer[1]+" - "+accelerometer[2]);
-	}
 }
