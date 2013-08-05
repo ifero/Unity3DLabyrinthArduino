@@ -4,7 +4,7 @@ using System.IO.Ports;
 
 
 public class CommunicationWithArduino : MonoBehaviour {
-	SerialPort sp = new SerialPort("COM3",115200); 
+	SerialPort sp = new SerialPort("COM9",115200); 
 	string[] accelerometer;
 	
 	// Use this for initialization
