@@ -1,7 +1,7 @@
-﻿#pragma strict
-private var startTime:float;
-var textTime:String;
-var Flag:boolean;
+﻿
+private var startTime : float;
+var textTime : String;
+var Flag : boolean;
 
 function Start () {
 	startTime=Time.time;

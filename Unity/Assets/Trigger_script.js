@@ -1,4 +1,5 @@
-﻿var intero:int;
+﻿var intero : int;
+
 function OnTriggerEnter() {
 	intero=1;
 	//oggettoPalla = GameObject.Find("Palla");

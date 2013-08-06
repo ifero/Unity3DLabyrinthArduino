@@ -6,7 +6,7 @@ using System.IO.Ports;
 public class CommunicationWithArduino : MonoBehaviour {
 	
 	// Create a serial port to listen
-	SerialPort sp = new SerialPort("COM9",115200);
+	SerialPort sp = new SerialPort("COM3",115200);
 	
 	// Vector of strings in which will be saved the 3-axes
 	string[] accelerometer;
@@ -50,5 +50,6 @@ public class CommunicationWithArduino : MonoBehaviour {
 			// Create a quaternion with the accelerometer values
 			Quaternion target = Quaternion.Euler(-(float.Parse(accelerometer[0])),0,float.Parse(accelerometer[1]));
 			// rotate the object from his position to the new position in a certain amount of time
-        	transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 2.0f);
+        	transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 3.0f);
+	}
 }
