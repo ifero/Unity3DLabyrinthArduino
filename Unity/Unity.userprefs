@@ -1,9 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CommunicationWithArduino.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Trigger_script.js">
     <Files>
-      <File FileName="Assets\Trigger_script.js" Line="1" Column="1" />
-      <File FileName="Assets\CommunicationWithArduino.cs" Line="1" Column="38" />
+      <File FileName="Assets\Timer.js" Line="21" Column="41" />
+      <File FileName="Assets\Trigger_script.js" Line="24" Column="2" />
+      <File FileName="Assets\CommunicationWithArduino.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

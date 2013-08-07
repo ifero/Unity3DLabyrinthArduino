@@ -5,6 +5,7 @@ using System.IO.Ports;
 
 public class CommunicationWithArduino : MonoBehaviour {
 	
+	public bool stopcomm = false;
 	// Create a serial port to listen
 	SerialPort sp = new SerialPort("COM9",115200);
 	
@@ -22,34 +23,42 @@ public class CommunicationWithArduino : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// Check if the connection is open
-		if(sp.IsOpen){
-			try{
-				// Read a line from the serial stream (X;Y;Z)
-				string str = sp.ReadLine();
-				// Split the string readed by the semicolon
-				accelerometer = str.Split(';');
-				// Set the maximum inclination at 45 degrees
-				for(int i=0; i<3; i++)
-				{
-					if (int.Parse(accelerometer[i])>45)
-						accelerometer[i]="45";
-					else if (int.Parse(accelerometer[i])<-45)
-						accelerometer[i]="-45";
+		if (!stopcomm){
+			if(sp.IsOpen){
+				try{
+					// Read a line from the serial stream (X;Y;Z)
+					string str = sp.ReadLine();
+					// Split the string readed by the semicolon
+					accelerometer = str.Split(';');
+					// Set the maximum inclination at 45 degrees
+					for(int i=0; i<3; i++)
+					{
+						if (int.Parse(accelerometer[i])>45)
+							accelerometer[i]="45";
+						else if (int.Parse(accelerometer[i])<-45)
+							accelerometer[i]="-45";
+					}
+					MoveThePlane(accelerometer,3.0f);
 				}
-				MoveThePlane(accelerometer);
+				catch(System.Exception){
+					
+				}
 			}
-			catch(System.Exception){
-				
-			}
+		}
+		else{
+			accelerometer[0]="0";
+			accelerometer[1]="0";
+			accelerometer[2]="0";
+			MoveThePlane(accelerometer,0.71f);
 		}
 	}
 	
 	// This method is callen each frame
-	void MoveThePlane (string[] accelerometer){
+	void MoveThePlane (string[] accelerometer, float speed){
 		
 			// Create a quaternion with the accelerometer values
 			Quaternion target = Quaternion.Euler(-(float.Parse(accelerometer[0])),0,float.Parse(accelerometer[1]));
 			// rotate the object from his position to the new position in a certain amount of time
-        	transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * 3.0f);
+        	transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * speed);
 	}
 }
