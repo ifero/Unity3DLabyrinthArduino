@@ -6,7 +6,7 @@ using System.IO.Ports;
 public class CommunicationWithArduino : MonoBehaviour {
 	
 	// Create a serial port to listen
-	SerialPort sp = new SerialPort("COM3",115200);
+	SerialPort sp = new SerialPort("COM9",115200);
 	
 	// Vector of strings in which will be saved the 3-axes
 	string[] accelerometer;
