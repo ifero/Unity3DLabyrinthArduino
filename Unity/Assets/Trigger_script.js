@@ -13,8 +13,12 @@ function OnTriggerEnter() {
 	componenteArduino.stopcomm=true;	
 	
 	// Tolgo la componente fisica alla palla
+	
 	objPalla = GameObject.Find("Palla");
 	Destroy(objPalla.GetComponent(Rigidbody));
+	//PallaTransf=objPalla.GetComponent(Transform);
+	//PallaTransf.transform.Translate(transform.transform.position+PallaTransf.transform.position);
+	//PallaTransf.transform.position=Vector3(-0.4202693,(0.5079651*2),-0.3796388);
 	
 	// Avvio PaSyWin
 	objPaSy = GameObject.Find("PaSyWin");

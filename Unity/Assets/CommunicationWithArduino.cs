@@ -50,6 +50,7 @@ public class CommunicationWithArduino : MonoBehaviour {
 			accelerometer[1]="0";
 			accelerometer[2]="0";
 			MoveThePlane(accelerometer,0.71f);
+			
 		}
 	}
 	

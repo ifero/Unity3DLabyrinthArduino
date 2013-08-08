@@ -13,7 +13,8 @@ function Update () {
 	if (Flag)
 	{
 		var guitime=Time.time-startTime;
-		var minutes = guitime/60;
+		Debug.Log(guitime);
+		var minutes = Mathf.Floor(guitime/60);
 		var seconds = guitime%60;
 		var fraction = (guitime *100)%100;
 		
