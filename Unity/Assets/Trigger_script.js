@@ -3,7 +3,7 @@
 function OnTriggerEnter() {
 	//intero=1;	
 	// Interrompo l'avanzamento del tempo
-	objTimer = GameObject.Find("Testo");
+	objTimer = GameObject.Find("Tempo");
 	componenteTimer = objTimer.GetComponent("Timer");
 	componenteTimer.Flag=false;
 	
@@ -12,8 +12,8 @@ function OnTriggerEnter() {
 	componenteArduino = objLab.GetComponent("CommunicationWithArduino");
 	componenteArduino.stopcomm=true;	
 	
-	// Tolgo la componente fisica alla palla
 	
+	// Tolgo la componente fisica alla palla
 	objPalla = GameObject.Find("Palla");
 	Destroy(objPalla.GetComponent(Rigidbody));
 	//PallaTransf=objPalla.GetComponent(Transform);

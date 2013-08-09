@@ -2,6 +2,7 @@
 
 #define LIS302_POWER_PIN 13
 #define LIS302_INT2_PIN 2
+#define BUZZER_PIN 9
 
 #define I2C_ADDRESS 28
 #define POWER_UP_DELAY 10
@@ -24,6 +25,7 @@
 void setup()
 {  
   Serial.begin(115200);  // start serial for output
+  pinMode(BUZZER_PIN, OUTPUT); // set the pin for the Piezo
   setupLIS();
   startLIS();
 }
@@ -35,25 +37,31 @@ void loop()
   char y = readRegister(Y_OUT);
   char z = readRegister(Z_OUT);
   
-  //char xmap = map(x,60,-60,90,-90);
-  //char ymap = map(y,60,-60,90,-90);
-  //char zmap = map(z,60,-60,90,-90);
-  Serial.print(x,DEC);
+  char xmap = map(x, 56, -52, 90, -90);
+  char ymap = map(y, 54, -57, 90, -90);
+  Serial.print(xmap, DEC);
   Serial.print(";");
-  Serial.print(y,DEC);
+  Serial.print(ymap, DEC);
   Serial.print(";");
-  Serial.print(z,DEC);
+  Serial.print(z, DEC);
   Serial.println(";");
 
   delay(33);
+  if(Serial.available() >0 ){
+    char val = Serial.read();
+    if(val == 'w'){
+      digitalWrite(BUZZER_PIN, HIGH);
+      delayMicroseconds(54);
+      digitalWrite(BUZZER_PIN, LOW);
+      delayMicroseconds(54);
+    }
+  }
 }
+
 
 void setupLIS() {
   
-  Serial.println("Setting up LIS302DL");
-  
   pinMode(LIS302_POWER_PIN, OUTPUT); //the power pin
-  pinMode(LIS302_INT2_PIN, INPUT); //the int2 pin
   
   digitalWrite(LIS302_POWER_PIN,LOW); //switch off the LIS302
   
@@ -63,21 +71,10 @@ void setupLIS() {
 
 void startLIS() {
   
-  Serial.println("Powering up LIS302DL");
-  digitalWrite(LIS302_POWER_PIN,HIGH); //switch off the LIS302
+  digitalWrite(LIS302_POWER_PIN,HIGH); //switch on the LIS302
 
   delay(POWER_UP_DELAY);
   writeRegister(CTRL_REG1 , _BV(CTRL_PD) | _BV(CTRL_XEN) | _BV(CTRL_YEN) | _BV(CTRL_ZEN));
-  
-  //read who am i
-  char myself = readRegister(REGISTER_WHO_AM_I);
-  if (myself == WHO_AM_I_RESULT) {
-    Serial.println("yippie got an lis302DL!");
-  } else {
-    Serial.print("found an ");
-    Serial.print(myself, HEX);
-    Serial.println("! very strange!");
-  }
 }
 
 void writeRegister(unsigned char r, unsigned char v)

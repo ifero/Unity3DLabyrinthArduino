@@ -6,8 +6,9 @@ using System.IO.Ports;
 public class CommunicationWithArduino : MonoBehaviour {
 	
 	public bool stopcomm = false;
+	public bool hitTheWall = false;
 	// Create a serial port to listen
-	SerialPort sp = new SerialPort("COM9",115200);
+	SerialPort sp = new SerialPort("COM3",115200);
 	
 	// Vector of strings in which will be saved the 3-axes
 	string[] accelerometer;
@@ -39,6 +40,10 @@ public class CommunicationWithArduino : MonoBehaviour {
 							accelerometer[i]="-45";
 					}
 					MoveThePlane(accelerometer,3.0f);
+					if (hitTheWall){
+						sp.Write("w");
+						hitTheWall = false;
+					}
 				}
 				catch(System.Exception){
 					
