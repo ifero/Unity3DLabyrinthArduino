@@ -19,6 +19,7 @@ public class CommunicationWithArduino : MonoBehaviour {
 		sp.Open();
 		// Set the timeout at 100 milliseconds
 		sp.ReadTimeout = 100;
+		
 	}
 	
 	// Update is called once per frame

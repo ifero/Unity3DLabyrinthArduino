@@ -1,4 +1,5 @@
-﻿function OnGUI()
+﻿
+function OnGUI()
 {
 	if (GUI.Button(Rect(Screen.width/2 - 50,150,150,50),"Play"))
 		Application.LoadLevel("Labirinto");
