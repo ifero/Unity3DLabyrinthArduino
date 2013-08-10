@@ -2,6 +2,7 @@
 private var startTime : float;
 var textTime : String;
 var Flag : boolean;
+var guiTime : float;
 
 function Start () {
 	startTime=Time.time;
@@ -9,16 +10,16 @@ function Start () {
 }
 
 function Update () {
-	
 	if (Flag)
 	{
-		var guitime=Time.time-startTime;
-		Debug.Log(guitime);
-		var minutes = Mathf.Floor(guitime/60);
-		var seconds = guitime%60;
-		var fraction = (guitime *100)%100;
+		guiTime=Time.time-startTime;
+		
+		var minutes = Mathf.Floor(guiTime/60);
+		var seconds = Mathf.Floor(guiTime%60);
+		var fraction = (guiTime *100)%100;
 		
 		textTime=String.Format("{0:00}:{1:00}:{2:00}",minutes,seconds,fraction);
+		
 		GetComponent(GUIText).text = textTime;
 	}
 }
