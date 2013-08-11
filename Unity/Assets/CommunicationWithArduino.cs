@@ -7,6 +7,7 @@ public class CommunicationWithArduino : MonoBehaviour {
 	
 	public bool stopcomm = false;
 	public bool hitTheWall = false;
+	public bool stopArduino = false;
 	// Create a serial port to listen
 	SerialPort sp = new SerialPort("COM3",115200);
 	
@@ -44,6 +45,10 @@ public class CommunicationWithArduino : MonoBehaviour {
 					if (hitTheWall){
 						sp.Write("w");
 						hitTheWall = false;
+					}
+					if(stopArduino){
+						sp.Write("s");
+						sp.Close();
 					}
 				}
 				catch(System.Exception){
