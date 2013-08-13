@@ -47,6 +47,7 @@
      <Compile Include="Assets\CollisionSound.js" />
      <Compile Include="Assets\HighScoreClass.js" />
      <Compile Include="Assets\HighScoreScript.js" />
+     <Compile Include="Assets\Labirinto_Script.js" />
      <Compile Include="Assets\MainMenu.js" />
      <Compile Include="Assets\RuotaMulino.js" />
      <Compile Include="Assets\Timer.js" />

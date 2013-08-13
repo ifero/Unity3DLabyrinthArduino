@@ -21,8 +21,7 @@ function OnGUI(){
 	}
 	else{
 		
-	}
-	
+	}	
   }
 }
 

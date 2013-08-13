@@ -9,7 +9,7 @@ public class CommunicationWithArduino : MonoBehaviour {
 	public bool hitTheWall = false;
 	public bool stopArduino = false;
 	// Create a serial port to listen
-	SerialPort sp = new SerialPort("COM3",115200);
+	SerialPort sp = new SerialPort("COM9",115200);
 	
 	// Vector of strings in which will be saved the 3-axes
 	string[] accelerometer;
