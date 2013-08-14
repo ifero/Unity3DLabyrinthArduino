@@ -61,3 +61,11 @@ function SaveHighScores(){
 	sw.Flush();
 	sw.Close();
 }
+
+function ResetHighScorse(){
+	var k = 0;
+	while(k<5){
+		highscore[k] = new HighScores(0,"00:00:00","unknown");
+		k++;	
+	}
+}

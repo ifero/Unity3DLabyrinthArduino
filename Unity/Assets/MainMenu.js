@@ -37,21 +37,25 @@ function OnGUI()
 			i++;
 			offset+=60;	
 		}
-<<<<<<< HEAD
+
 		if (GUI.Button(Rect(Screen.width/2 - 60,470,70,50),"Indietro"))
 		{	Application.LoadLevel("Main_Menu");		}
 		if (GUI.Button(Rect(Screen.width/2+40,470,70,50),"Quit"))
 		{	Application.Quit();						}
-=======
-		if (GUI.Button(Rect(Screen.width/2+150,170,150,50),"Cancella High Scores")){
-			var sw : StreamWriter = new StreamWriter("Assets/HighScores.txt");
-			sw.Write(null);
-			sw.Close();
+
+		if (GUI.Button(Rect(Screen.width/2+150,170,150,50),"Reset High Scores")){
+			//File.Delete("Assets/HighScores.txt");
+			//File.Create("Assets/HighScores.txt");
+			//var sw : StreamWriter = new StreamWriter("Assets/HighScores.txt");
+			//sw.Close();
+			objhs = GameObject.Find("HighScores");
+			objhs.GetComponent("HighScoreScript").ResetHighScorse();
+			Application.LoadLevel("Main_Menu");
 		}
 		if (GUI.Button(Rect(Screen.width/2+150,230,150,50),"Main Menu")){
 			highScoreMenu = false;
 			mainMenu = true;
 		}
->>>>>>> d48ed0a4deb6e4afb636cc5bdb74566a83358066
+
 	}
 }
