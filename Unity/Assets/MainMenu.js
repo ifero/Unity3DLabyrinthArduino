@@ -43,7 +43,7 @@ function OnGUI()
 		if (GUI.Button(Rect(Screen.width/2+40,470,70,50),"Quit"))
 		{	Application.Quit();						}
 
-		if (GUI.Button(Rect(Screen.width/2+150,170,150,50),"Reset High Scores")){
+		if (GUI.Button(Rect(Screen.width/2-60,530,170,50),"Reset High Scores")){
 			//File.Delete("Assets/HighScores.txt");
 			//File.Create("Assets/HighScores.txt");
 			//var sw : StreamWriter = new StreamWriter("Assets/HighScores.txt");
@@ -52,10 +52,10 @@ function OnGUI()
 			objhs.GetComponent("HighScoreScript").ResetHighScorse();
 			Application.LoadLevel("Main_Menu");
 		}
-		if (GUI.Button(Rect(Screen.width/2+150,230,150,50),"Main Menu")){
-			highScoreMenu = false;
-			mainMenu = true;
-		}
+		//if (GUI.Button(Rect(Screen.width/2+150,230,150,50),"Main Menu")){
+		//	highScoreMenu = false;
+		//	mainMenu = true;
+		//}
 
 	}
 }
