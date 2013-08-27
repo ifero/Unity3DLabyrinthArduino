@@ -2,32 +2,37 @@
 using System.Collections;
 using System.IO.Ports;
 
-
 public class CommunicationWithArduino : MonoBehaviour {
 	
 	public bool stopcomm = false;
 	public bool hitTheWall = false;
 	public bool stopArduino = false;
-	// Create a serial port to listen
-	SerialPort sp = new SerialPort("COM6",115200);
+	public bool isArduino = false;
+	public SerialPort sp;
 	
 	// Vector of strings in which will be saved the 3-axes
-	string[] accelerometer;
+	string[] accelerometer = {"0","0","0"};
 	
 	// Initialize the communication between arduino and unity
 	void Start () {
-		// Open the serial communication
-		sp.Open();
-		// Set the timeout at 100 milliseconds
-		sp.ReadTimeout = 100;
+		// Create a serial port to listen
+		string[] ports = SerialPort.GetPortNames();
 		
+		if (ports.Length>0){
+			sp = new SerialPort(ports[0],115200);		
+			// Open the serial communication
+			sp.Open();
+			// Set the timeout at 100 milliseconds
+			sp.ReadTimeout = 100;
+			isArduino=true;
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		// Check if the connection is open
 		if (!stopcomm){
-			if(sp.IsOpen){
+			if((isArduino)&&(sp.IsOpen)){
 				try{
 					// Read a line from the serial stream (X;Y;Z)
 					string str = sp.ReadLine();
@@ -46,15 +51,50 @@ public class CommunicationWithArduino : MonoBehaviour {
 						sp.Write("w");
 						hitTheWall = false;
 					}
-					if(stopArduino){
+					if((stopArduino)&&(isArduino)){
 						sp.Write("s");
 						sp.Close();
 					}
 				}
 				catch(System.Exception){
 					
-				}
+				}	
 			}
+			else{
+				const float gradi=3f;
+				float temp=0;
+				// GESTIONE TASTI	
+				if(Input.GetKey(KeyCode.LeftArrow)){
+					temp=float.Parse(accelerometer[1]);
+					if(temp<43){
+						temp+=gradi;
+						accelerometer[1]=temp.ToString();
+					}		
+				}
+				if(Input.GetKey(KeyCode.RightArrow)){
+					temp=float.Parse(accelerometer[1]);
+					if(temp>-43){
+						temp-=gradi;
+						accelerometer[1]=temp.ToString();
+					}		
+				}
+				if(Input.GetKey(KeyCode.UpArrow)){
+					temp=float.Parse(accelerometer[0]);
+					if(temp>-43){
+						temp-=gradi;
+						accelerometer[0]=temp.ToString();
+					}		
+				}				
+				if(Input.GetKey(KeyCode.DownArrow)){
+					temp=float.Parse(accelerometer[0]);
+					if(temp<43){
+						temp+=gradi;
+						accelerometer[0]=temp.ToString();
+					}				
+				}		
+				//Debug.Log("temp: "+temp+"	z:"+transform.localRotation.z+"		x:"+transform.localRotation.x+"		a0:"+accelerometer[0]+"		a1:"+accelerometer[1]);
+				MoveThePlane(accelerometer,3.0f);
+			}				
 		}
 		else{
 			accelerometer[0]="0";
