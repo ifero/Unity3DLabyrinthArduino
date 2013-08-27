@@ -52,7 +52,9 @@
      <Compile Include="Assets\RuotaMulino.js" />
      <Compile Include="Assets\Timer.js" />
      <Compile Include="Assets\Trigger_script.js" />
-     <Compile Include="Assets\ruotaPorta.js" />
+     <Compile Include="Assets\explosionBall.js" />
+     <Compile Include="Assets\ruotaPortaQ.js" />
+     <Compile Include="Assets\scriptCatapurta.js" />
      <Compile Include="Assets\script_force.js" />
      <None Include="Assets\Hard Surface Free\HardSurface Shaders\HardSurfacePro Hidden Front Cut Out Specular.shader" />
      <None Include="Assets\Hard Surface Free\HardSurface Shaders\HardSurface Free Cut Out Opaque Bump.shader" />
@@ -60,10 +62,12 @@
      <None Include="Assets\Hard Surface Free\HardSurface Shaders\HardSurfacePro Hidden Front Transparent Specular.shader" />
      <None Include="Assets\Hard Surface Free\HardSurface Shaders\HardSurface Free Transparent Specular.shader" />
      <None Include="Assets\Hard Surface Free\HardSurface Shaders\HardSurface Free Transparent Bump.shader" />
+     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Hard Surface Free\HardSurface Shaders\HardSurfacePro Hidden Front Cut Out Opaque Bump.shader" />
      <None Include="Assets\Hard Surface Free\HardSurface Shaders\HardSurface Free Opaque.shader" />
      <None Include="Assets\Hard Surface Free\HardSurface Shaders\HardSurface Free Cut Out Diffuse.shader" />
      <None Include="Assets\Hard Surface Free\HardSurface Shaders\HardSurface Free Cut Out Opaque Diffuse.shader" />
+     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Hard Surface Free\HardSurface Shaders\HardSurfacePro Hidden Front Opaque Bump.shader" />
      <None Include="Assets\Hard Surface Free\HardSurface Shaders\HardSurface Free Transparent.shader" />
      <None Include="Assets\Hard Surface Free\HardSurface Shaders\HardSurfacePro Hidden Front Opaque Diffuse.shader" />

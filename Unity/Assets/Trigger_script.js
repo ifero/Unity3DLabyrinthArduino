@@ -38,7 +38,12 @@ function OnTriggerEnter() {
 	textTime = componenteTimer.textTime;
 	
 	// Interrompo la comunicazione con Arduino
-	objLab = GameObject.Find("Labirinto");
+	try{
+		objLab = GameObject.Find("Labirinto");
+	}
+	catch(err){
+		objLab = GameObject.Find("Labirinto2");
+	}
 	componenteArduino = objLab.GetComponent("CommunicationWithArduino");
 	componenteArduino.stopcomm=true;
 	

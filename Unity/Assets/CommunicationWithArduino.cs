@@ -9,7 +9,7 @@ public class CommunicationWithArduino : MonoBehaviour {
 	public bool hitTheWall = false;
 	public bool stopArduino = false;
 	// Create a serial port to listen
-	SerialPort sp = new SerialPort("COM9",115200);
+	SerialPort sp = new SerialPort("COM6",115200);
 	
 	// Vector of strings in which will be saved the 3-axes
 	string[] accelerometer;
@@ -36,9 +36,9 @@ public class CommunicationWithArduino : MonoBehaviour {
 					// Set the maximum inclination at 45 degrees
 					for(int i=0; i<3; i++)
 					{
-						if (int.Parse(accelerometer[i])>45)
+						if (float.Parse(accelerometer[i])>45)
 							accelerometer[i]="45";
-						else if (int.Parse(accelerometer[i])<-45)
+						else if (float.Parse(accelerometer[i])<-45)
 							accelerometer[i]="-45";
 					}
 					MoveThePlane(accelerometer,3.0f);
