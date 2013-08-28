@@ -35,8 +35,8 @@ function initHighScores(){
 	sr.Close();
 }
 
-private function SortIt(a : HighScores, b: HighScores) : int {
-	return a.punteggio - b.punteggio;
+private function SortIt(a : HighScores, b: HighScores) : float {
+	return Mathf.Round(a.punteggio - b.punteggio);
 }
 
 function SortHighScores(){

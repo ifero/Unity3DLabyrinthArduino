@@ -20,7 +20,7 @@ function OnGUI(){
 		}
 	}
 	else{
-		
+		//Gestione restart partita.
 	}	
   }
 }
@@ -37,13 +37,8 @@ function OnTriggerEnter() {
 	floatTime = componenteTimer.guiTime;
 	textTime = componenteTimer.textTime;
 	
-	// Interrompo la comunicazione con Arduino
-	try{
-		objLab = GameObject.Find("Labirinto");
-	}
-	catch(err){
-		objLab = GameObject.Find("Labirinto2");
-	}
+	// Interrompo la comunicazione con Arduino e disattiva i tasti
+	objLab = GameObject.Find("Labirinto");
 	componenteArduino = objLab.GetComponent("CommunicationWithArduino");
 	componenteArduino.stopcomm=true;
 	

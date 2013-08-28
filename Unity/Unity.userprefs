@@ -1,13 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Trigger_script.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/HighScoreScript.js">
     <Files>
-      <File FileName="Assets\CommunicationWithArduino.cs" Line="64" Column="24" />
-      <File FileName="Assets\ruotaPortaQ.js" Line="20" Column="18" />
-      <File FileName="Assets\explosionBall.js" Line="1" Column="1" />
-      <File FileName="Assets\Trigger_script.js" Line="47" Column="36" />
-      <File FileName="Assets\Timer.js" Line="1" Column="1" />
-      <File FileName="Assets\RuotaMulino.js" Line="1" Column="1" />
+      <File FileName="Assets/HighScoreScript.js" Line="38" Column="58" />
+      <File FileName="Assets/MainMenu.js" Line="1" Column="1" />
+      <File FileName="Assets/CommunicationWithArduino.cs" Line="90" Column="39" />
+      <File FileName="Assets/Trigger_script.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
