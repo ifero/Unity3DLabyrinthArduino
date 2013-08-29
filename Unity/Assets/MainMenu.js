@@ -2,6 +2,13 @@
 
 var mainMenu = true;
 var highScoreMenu = false;
+var scores = new Array();
+var lines = new Array();
+
+function Start()
+{
+	lines = ReadHighScores();
+}
 
 function OnGUI()
 {
@@ -13,20 +20,20 @@ function OnGUI()
 			highScoreMenu = true;
 		}
 		GUI.Button(Rect(Screen.width/2 - 50,270,150,50),"Tutorial");
+			//Creare la scena di tutorial.
 		if (GUI.Button(Rect(Screen.width/2 - 50,330,150,50),"Quit"))
 			Application.Quit();
 	}
 	if(highScoreMenu){
-		var sr : StreamReader = new StreamReader("Assets/HighScores.txt");
 		var i = 0;
 		var offset = 150;
-		var lenght = sr.ReadToEnd();
-		lines = lenght.Split("\n"[0]);
+		lines = ReadHighScores();
 		if(lines.length != 1 || lines[0] != ""){
 			for (line in lines){
 				if (line != ""){
 					var temp = line.Split(" "[0]);
-					GUI.Box(Rect(Screen.width/2 - 60,offset,170,50),temp[1] + " " + temp[2]);
+					scores[i] = temp[1] + " " + temp[2];
+					GUI.Box(Rect(Screen.width/2 - 60,offset,170,50),scores[i]);
 					i++;
 					offset+=60;
 				}
@@ -38,24 +45,24 @@ function OnGUI()
 			offset+=60;	
 		}
 
-		if (GUI.Button(Rect(Screen.width/2 - 60,470,70,50),"Indietro"))
-		{	Application.LoadLevel("Main_Menu");		}
-		if (GUI.Button(Rect(Screen.width/2+40,470,70,50),"Quit"))
-		{	Application.Quit();						}
-
-		if (GUI.Button(Rect(Screen.width/2-60,530,170,50),"Reset High Scores")){
-			//File.Delete("Assets/HighScores.txt");
-			//File.Create("Assets/HighScores.txt");
-			//var sw : StreamWriter = new StreamWriter("Assets/HighScores.txt");
-			//sw.Close();
-			objhs = GameObject.Find("HighScores");
-			objhs.GetComponent("HighScoreScript").ResetHighScorse();
-			Application.LoadLevel("Main_Menu");
+		if (GUI.Button(Rect(Screen.width/2 - 60,470,170,50),"Indietro")){
+			highScoreMenu = false;
+			mainMenu = true;
 		}
-		//if (GUI.Button(Rect(Screen.width/2+150,230,150,50),"Main Menu")){
-		//	highScoreMenu = false;
-		//	mainMenu = true;
-		//}
-
+		if (GUI.Button(Rect(Screen.width/2-60,530,170,50),"Reset High Scores")){
+			File.Delete("Assets/HighScores.txt");
+			File.Create("Assets/HighScores.txt");
+			for (i=0;i<5;i++){
+				scores[i] = "00:00:00 unknown";
+			}
+		}
 	}
+}
+
+function ReadHighScores() : String[]
+{
+	var sr : StreamReader = new StreamReader("Assets/HighScores.txt");
+	var lenght = sr.ReadToEnd();
+	sr.Close();
+	return lenght.Split("\n"[0]);
 }

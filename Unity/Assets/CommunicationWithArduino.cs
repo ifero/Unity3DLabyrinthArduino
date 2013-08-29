@@ -9,6 +9,7 @@ public class CommunicationWithArduino : MonoBehaviour {
 	public bool stopArduino = false;
 	public bool isArduino = false;
 	public bool useKeyboard = false;
+	public bool doNotTrack = false;
 	public SerialPort sp;
 	
 	// Vector of strings in which will be saved the 3-axes
@@ -33,6 +34,7 @@ public class CommunicationWithArduino : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// Check if the connection is open
+		if(!doNotTrack){
 		if (!stopcomm){
 			if(isArduino&&sp.IsOpen){
 				try{
@@ -104,6 +106,7 @@ public class CommunicationWithArduino : MonoBehaviour {
 			accelerometer[2]="0";
 			MoveThePlane(accelerometer,0.71f);
 			
+		}
 		}
 	}
 	

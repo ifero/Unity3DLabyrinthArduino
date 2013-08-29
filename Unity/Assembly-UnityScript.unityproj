@@ -47,14 +47,13 @@
      <Compile Include="Assets\CollisionSound.js" />
      <Compile Include="Assets\HighScoreClass.js" />
      <Compile Include="Assets\HighScoreScript.js" />
-     <Compile Include="Assets\Labirinto_Script.js" />
      <Compile Include="Assets\MainMenu.js" />
+     <Compile Include="Assets\Pause_Game_GUI.js" />
      <Compile Include="Assets\RuotaMulino.js" />
      <Compile Include="Assets\Timer.js" />
      <Compile Include="Assets\Trigger_script.js" />
      <Compile Include="Assets\explosionBall.js" />
      <Compile Include="Assets\ruotaPortaQ.js" />
-     <Compile Include="Assets\scriptCatapurta.js" />
      <Compile Include="Assets\script_force.js" />
      <None Include="Assets\Hard Surface Free\HardSurface Shaders\HardSurfacePro Hidden Front Cut Out Specular.shader" />
      <None Include="Assets\Hard Surface Free\HardSurface Shaders\HardSurface Free Cut Out Opaque Bump.shader" />
