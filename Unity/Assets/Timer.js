@@ -1,5 +1,5 @@
 ﻿
-private var startTime : float;
+public var startTime : float;
 var textTime : String;
 var Flag : boolean;
 var guiTime : float;

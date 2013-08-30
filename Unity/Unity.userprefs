@@ -1,15 +1,16 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Pause_Game_GUI.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Script_Palla.js">
     <Files>
-      <File FileName="Assets/CommunicationWithArduino.cs" Line="110" Column="4" />
-      <File FileName="Assets/HighScoreScript.js" Line="38" Column="58" />
-      <File FileName="Assets/MainMenu.js" Line="10" Column="27" />
+      <File FileName="Assets/CommunicationWithArduino.cs" Line="1" Column="1" />
+      <File FileName="Assets/HighScoreScript.js" Line="1" Column="1" />
+      <File FileName="Assets/MainMenu.js" Line="1" Column="1" />
       <File FileName="Assets/Trigger_script.js" Line="1" Column="1" />
-      <File FileName="Assets/CollisionSound.js" Line="8" Column="1" />
+      <File FileName="Assets/CollisionSound.js" Line="1" Column="1" />
       <File FileName="Assets/explosionBall.js" Line="1" Column="1" />
       <File FileName="Assets/ruotaPortaQ.js" Line="1" Column="1" />
-      <File FileName="Assets/Pause_Game_GUI.js" Line="5" Column="2" />
+      <File FileName="Assets/Pause_Game_GUI.js" Line="1" Column="1" />
+      <File FileName="Assets/Script_Palla.js" Line="15" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,7 +20,7 @@
           </Node>
           <Node name="Assembly-UnityScript" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="Pause_Game_GUI.js" selected="True" />
+              <Node name="Script_Palla.js" selected="True" />
             </Node>
           </Node>
         </State>

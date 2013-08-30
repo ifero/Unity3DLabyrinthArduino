@@ -27,10 +27,10 @@ function initHighScores(){
 		highscore[k] = new HighScores(0,"00:00:00","unknown");
 		k++;	
 	}
-//	SortHighScores();
-//	for(hs in highscore){
-//		Debug.Log(hs.punteggio + " " + hs.tempo + " " + hs.nick);
-//	}
+	//SortHighScores();
+	//for(hs in highscore){
+	//	Debug.Log(hs.punteggio + " " + hs.tempo + " " + hs.nick);
+	//}
 	
 	sr.Close();
 }
@@ -49,23 +49,22 @@ function AddHighScore(hs : HighScores){
 		highscore[0] = hs;
 	else
 		highscore[4] = hs;
+	SortHighScores();	
 }
 
 function SaveHighScores(){
 	var sw : StreamWriter = new StreamWriter("Assets/HighScores.txt");
+	//for(hs in highscore){
+	//	Debug.Log(hs.punteggio + " " + hs.tempo + " " + hs.nick);
+	//}
 	SortHighScores();
+	//for(hs in highscore){
+	//	Debug.Log(hs.punteggio + " " + hs.tempo + " " + hs.nick);
+	//}
 	for (hs in highscore){
 		if (hs.punteggio != 0)
 			sw.WriteLine(hs.punteggio + " " + hs.tempo + " " + hs.nick);
 	}
 	sw.Flush();
 	sw.Close();
-}
-
-function ResetHighScorse(){
-	var k = 0;
-	while(k<5){
-		highscore[k] = new HighScores(0,"00:00:00","unknown");
-		k++;	
-	}
 }
