@@ -17,7 +17,7 @@ function OnGUI()
 			connection.GetComponent("CommunicationWithArduino").doNotTrack = true;
 		}
 		else{
-			Paused = false;
+			paused = false;
 			textPause = "Pause";
 			Time.timeScale = 1;
 			connection.GetComponent("CommunicationWithArduino").doNotTrack = false;

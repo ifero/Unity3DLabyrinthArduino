@@ -8,9 +8,23 @@ function Start(){
 	initHighScores();
 }
 
+// Legge dal file gli highscore e li salva nella struttura apposita HighScores
 function initHighScores(){
 	i = 0;
-	var sr : StreamReader = new StreamReader("Assets/HighScores.txt");
+	var sr : StreamReader;
+	// Controlla quale file bisogna aprire, in base al livello in cui ci si trova
+	switch(Application.loadedLevelName){
+		case "Labirinto":
+			sr = new StreamReader("Assets/HighScores.txt");
+			break;
+		case "Labirinto2":
+			sr = new StreamReader("Assets/HighScores2.txt");
+			break;
+		case "Labirinto3":
+			sr = new StreamReader("Assets/HighScores3.txt");
+			break;
+	}
+	// Legge il file e salva gli highscore nella struttura
 	var lenght = sr.ReadToEnd();
 	lines = lenght.Split("\n"[0]);
 	if(lines.length != 1 || lines[0] != ""){
@@ -22,28 +36,26 @@ function initHighScores(){
 			}
 		}
 	}
+	// Se gli highscore sono meno di 5, aggiunge highscores vuoti
 	var k = i;
 	while(k<5){
-		highscore[k] = new HighScores(0,"00:00:00","unknown");
+		highscore[k] = new HighScores(0,"00:00:00","Unknown");
 		k++;	
 	}
-	//SortHighScores();
-	//for(hs in highscore){
-	//	Debug.Log(hs.punteggio + " " + hs.tempo + " " + hs.nick);
-	//}
-	
+	// chiudo lo stream in lettura
 	sr.Close();
 }
 
+// algoritmo di ordinamento
 private function SortIt(a : HighScores, b: HighScores) : float {
-	return Mathf.Round(a.punteggio - b.punteggio);
+	return a.tempo.CompareTo(b.tempo);
 }
 
 function SortHighScores(){
 	System.Array.Sort(highscore, SortIt);
 }
 
-
+// se il file è vuoto aggiunge in testa, se è pieno aggiunge in coda
 function AddHighScore(hs : HighScores){
 	if (highscore[0].punteggio == 0)
 		highscore[0] = hs;
@@ -52,15 +64,20 @@ function AddHighScore(hs : HighScores){
 	SortHighScores();	
 }
 
+// salva gli highscore nella struttura dentro il file permanente.
 function SaveHighScores(){
-	var sw : StreamWriter = new StreamWriter("Assets/HighScores.txt");
-	//for(hs in highscore){
-	//	Debug.Log(hs.punteggio + " " + hs.tempo + " " + hs.nick);
-	//}
+	var sw : StreamWriter;
+	switch(Application.loadedLevelName){
+		case "Labirinto":
+			sw = new StreamWriter("Assets/HighScores.txt");
+			break;
+		case "Labirinto2":
+			sw = new StreamWriter("Assets/HighScores2.txt");
+			break;
+		case "Labirinto3":
+			sw = new StreamWriter("Assets/HighScores3.txt");
+	}
 	SortHighScores();
-	//for(hs in highscore){
-	//	Debug.Log(hs.punteggio + " " + hs.tempo + " " + hs.nick);
-	//}
 	for (hs in highscore){
 		if (hs.punteggio != 0)
 			sw.WriteLine(hs.punteggio + " " + hs.tempo + " " + hs.nick);
