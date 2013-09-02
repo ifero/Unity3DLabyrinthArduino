@@ -4,6 +4,7 @@ var paused = false;
 function Start()
 {
 	textPause = "Pause";
+	Time.timeScale = 1;
 	connection = GameObject.Find("Labirinto");
 }
 
@@ -25,10 +26,21 @@ function OnGUI()
 			
 	}
 	if (paused){
-		if (GUI.Button(Rect(Screen.width - 200,120,150,50),"Restart")){	
-			Application.LoadLevel("Labirinto");
+		if (GUI.Button(Rect(Screen.width - 200,120,150,50),"Restart")){
+			switch(Application.loadedLevelName){
+				case "Labirinto":
+					Application.LoadLevel("Labirinto");
+					break;
+				case "Labirinto2":
+					Application.LoadLevel("Labirinto2");
+					break;
+				case "Labirinto3":
+					Application.LoadLevel("Labirinto3");
+					break;
+			}
 		}
 		if (GUI.Button(Rect(Screen.width-200,190,150,50),"Quit")){
+			paused = false;
 			Application.LoadLevel("Main_Menu");
 		}
 	}
