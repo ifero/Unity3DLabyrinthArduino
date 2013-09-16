@@ -26,6 +26,7 @@ void setup()
 {  
   Serial.begin(115200);  // start serial for output
   pinMode(BUZZER_PIN, OUTPUT); // set the pin for the Piezo
+  //pinMode(2,INPUT);
   setupLIS();
   startLIS();
 }
@@ -36,7 +37,7 @@ void loop()
   char x = readRegister(X_OUT);
   char y = readRegister(Y_OUT);
   char z = readRegister(Z_OUT);
-  
+  //int button = digitalRead(2);
   char xmap = map(x, 56, -52, 90, -90);
   char ymap = map(y, 54, -57, 90, -90);
   Serial.print(xmap, DEC);
@@ -45,6 +46,8 @@ void loop()
   Serial.print(";");
   Serial.print(z, DEC);
   Serial.println(";");
+  //Serial.print(button);
+  //Serial.println(";");
 
   delay(33);
   if(Serial.available() >0 ){
