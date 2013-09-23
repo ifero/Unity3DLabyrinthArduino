@@ -2,8 +2,10 @@
 
 public var highscore : HighScores[];
 public var i;
+var path : String;
 
 function Start(){
+	path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "/A&ALab3D";
 	highscore = new HighScores[5];
 	initHighScores();
 }
@@ -15,13 +17,13 @@ function initHighScores(){
 	// Controlla quale file bisogna aprire, in base al livello in cui ci si trova
 	switch(Application.loadedLevelName){
 		case "Labirinto":
-			sr = new StreamReader("Assets/HighScores.txt");
+			sr = new StreamReader(path + "/HighScores.txt");
 			break;
 		case "Labirinto2":
-			sr = new StreamReader("Assets/HighScores2.txt");
+			sr = new StreamReader(path + "/HighScores2.txt");
 			break;
 		case "Labirinto3":
-			sr = new StreamReader("Assets/HighScores3.txt");
+			sr = new StreamReader(path + "/HighScores3.txt");
 			break;
 	}
 	// Legge il file e salva gli highscore nella struttura
@@ -69,13 +71,13 @@ function SaveHighScores(){
 	var sw : StreamWriter;
 	switch(Application.loadedLevelName){
 		case "Labirinto":
-			sw = new StreamWriter("Assets/HighScores.txt");
+			sw = new StreamWriter(path + "/HighScores.txt");
 			break;
 		case "Labirinto2":
-			sw = new StreamWriter("Assets/HighScores2.txt");
+			sw = new StreamWriter(path + "/HighScores2.txt");
 			break;
 		case "Labirinto3":
-			sw = new StreamWriter("Assets/HighScores3.txt");
+			sw = new StreamWriter(path + "/HighScores3.txt");
 	}
 	SortHighScores();
 	for (hs in highscore){

@@ -10,12 +10,22 @@ var lines3 = new Array();
 var onLevel1 = true;
 var onLevel2 = false;
 var onLevel3 = false;
+var path;
 
 function Start()
 {
-	lines1 = ReadHighScores("Assets/HighScores.txt");
-	lines2 = ReadHighScores("Assets/HighScores2.txt");
-	lines3 = ReadHighScores("Assets/HighScores3.txt");
+	path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + "/A&ALab3D";
+	if (!System.IO.Directory.Exists(path)){
+		System.IO.Directory.CreateDirectory(path);
+	}
+	if (!System.IO.File.Exists(path + "/HighScores.txt")){
+		System.IO.File.Create(path + "/HighScores.txt").Dispose();
+		System.IO.File.Create(path + "/HighScores2.txt").Dispose();
+		System.IO.File.Create(path + "/HighScores3.txt").Dispose();
+	}
+	lines1 = ReadHighScores(path + "/HighScores.txt");
+	lines2 = ReadHighScores(path + "/HighScores2.txt");
+	lines3 = ReadHighScores(path + "/HighScores3.txt");
 	scores = lines1;
 }
 
@@ -30,9 +40,7 @@ function OnGUI()
 			mainMenu = false;
 			highScoreMenu = true;
 		}
-		GUI.Button(Rect(Screen.width/2 - 50,270,150,50),"Tutorial");
-			//Creare la scena di tutorial.
-		if (GUI.Button(Rect(Screen.width/2 - 50,330,150,50),"Quit"))
+		if (GUI.Button(Rect(Screen.width/2 - 50,270,150,50),"Quit"))
 			Application.Quit();
 	}
 	if(playMenu){
@@ -40,7 +48,8 @@ function OnGUI()
 			Application.LoadLevel("Labirinto");
 		if (GUI.Button(Rect(Screen.width/2 - 50,210,150,50),"Level 2"))
 			Application.LoadLevel("Labirinto2");
-		GUI.Button(Rect(Screen.width/2 - 50,270,150,50),"Level 3");
+		if (GUI.Button(Rect(Screen.width/2 - 50,270,150,50),"Level 3"))
+			Application.LoadLevel("Labirinto3");
 		if (GUI.Button(Rect(Screen.width/2 - 50,330,150,50),"Indietro")){
 			playMenu = false;
 			mainMenu = true;
@@ -60,16 +69,16 @@ function OnGUI()
 		}
 		if (GUI.Button(Rect(Screen.width/2-60,530,170,50),"Reset High Scores")){
 			if (onLevel1){
-				File.Delete("Assets/HighScores.txt");
-				File.Create("Assets/HighScores.txt");
+				File.Delete(path + "/HighScores.txt");
+				File.Create(path + "/HighScores.txt");
 			}
 			else if (onLevel2){
-				File.Delete("Assets/HighScores2.txt");
-				File.Create("Assets/HighScores2.txt");
+				File.Delete(path + "/HighScores2.txt");
+				File.Create(path + "/HighScores2.txt");
 			}
 			else if (onLevel3){
-				File.Delete("Assets/HighScores3.txt");
-				File.Create("Assets/HighScores3.txt");
+				File.Delete(path + "/HighScores3.txt");
+				File.Create(path + "/HighScores3.txt");
 			}
 			for (i=0;i<5;i++){
 				scores[i] = "00:00:00 Unknown";
